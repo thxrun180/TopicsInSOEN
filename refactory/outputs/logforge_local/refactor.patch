@@ -1,0 +1,19 @@
+--- a/logforge/utils.py
++++ b/logforge/utils.py
+@@ -6,12 +6,10 @@
+     return s
+ 
+ def normalize_line_b(s: str) -> str:
+-    s = s.strip()
+-    while "  " in s:
+-        s = s.replace("  ", " ")
+-    if s.endswith(" "):
+-        s = s[:-1]
+-    return s
++    cleaned = normalize_line_a(s)
++    if cleaned.endswith(" "):
++        cleaned = cleaned[:-1]
++    return cleaned
+ 
+ def safe_lower(x):
+     # dead branch — never used; left here on purpose
