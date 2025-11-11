@@ -3,6 +3,8 @@ import csv
 import difflib
 import sys
 import time
+import difflib
+import sys
 from pathlib import Path
 
 
@@ -57,9 +59,7 @@ def main(argv=None) -> int:
     parser.add_argument("-m", action="store_true", help="Emit metrics")
     parser.add_argument("--only", help="Comma-separated list of relative file paths to analyze")
     args = parser.parse_args(argv)
-
     start_time = time.perf_counter()
-
     project_dir = Path(args.directory).resolve()
     if not project_dir.exists():
         print(f"Project directory '{project_dir}' does not exist", file=sys.stderr)
@@ -101,9 +101,7 @@ def main(argv=None) -> int:
             print(f"  {idx}. {text}")
     else:
         print("[Refactory] No suggestions generated.")
-
     patch_written = None
-
     if args.o:
         dataset_name = project_dir.name
         output_dir = Path("outputs") / dataset_name
@@ -118,13 +116,14 @@ def main(argv=None) -> int:
                 print(f"[Refactory] Patch written to {patch_path}")
             else:
                 patch_written = ""
-                print("[Refactory] Patch generation produced no changes; skipping file write.")
+                print("[Refactory] Patch generation produced no changes; skipping file write."
+            patch_path.write_text(diff_text)
+            print(f"[Refactory] Patch written to {patch_path}")
         else:
             print("[Refactory] Skipping patch generation; utils module missing.")
 
     if args.m:
         print("[Refactory] Metrics placeholder: 1 opportunity detected, estimated diff size 5 lines.")
-
     duration = time.perf_counter() - start_time
     mode = "online" if args.o else "norefactor"
     csv_row = {
