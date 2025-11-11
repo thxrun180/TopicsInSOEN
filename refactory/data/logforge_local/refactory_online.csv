@@ -1,0 +1,2 @@
+question,seed,mode,targets,suggestion_count,patch_path,duration_sec
+logforge_demo,42,online,"logforge/utils.py,logforge/analytics.py",2,outputs/logforge_local/refactor.patch,0.003

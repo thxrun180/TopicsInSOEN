@@ -1,0 +1,12 @@
+--- a/logforge/utils.py
++++ b/logforge/utils.py
+@@ -10,9 +10,3 @@
+     if cleaned.endswith(" "):
+         cleaned = cleaned[:-1]
+     return cleaned
+-
+-def safe_lower(x):
+-    # dead branch — never used; left here on purpose
+-    if False:
+-        return x.upper()
+-    return x.lower()
