@@ -6,10 +6,12 @@ def normalize_line_a(s: str) -> str:
     return s
 
 def normalize_line_b(s: str) -> str:
-    cleaned = normalize_line_a(s)
-    if cleaned.endswith(" "):
-        cleaned = cleaned[:-1]
-    return cleaned
+    s = s.strip()
+    while "  " in s:
+        s = s.replace("  ", " ")
+    if s.endswith(" "):
+        s = s[:-1]
+    return s
 
 def safe_lower(x):
     # dead branch — never used; left here on purpose

@@ -23,6 +23,7 @@ def build_patch(project_dir: Path, relative_path: str) -> str:
         "    if cleaned.endswith(\" \"):\n",
         "        cleaned = cleaned[:-1]\n",
         "    return cleaned\n",
+        "\n",
     ]
 
     start = None
@@ -32,11 +33,14 @@ def build_patch(project_dir: Path, relative_path: str) -> str:
             break
     if start is None:
         return ""
-    end = start
-    while end < len(original) and original[end].strip() != "return s":
+
+    end = start + 1
+    while end < len(original):
+        line = original[end]
+        if line.startswith("def ") and not line.startswith("def normalize_line_b"):
+            break
         end += 1
-    if end < len(original):
-        end += 1
+
     new_lines = original[:start] + replacement_block + original[end:]
 
     diff = difflib.unified_diff(
