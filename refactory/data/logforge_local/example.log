@@ -1,0 +1,4 @@
+INFO | 2025-11-11T10:00:00 | User logged in | tags=auth,user
+WARN | 2025-11-11T10:01:00 | Disk  space  low | tags=sys
+INFO | 2025-11-11T10:02:00 | User logged in | tags=auth
+ERROR | 2025-11-11T10:03:00 | Cannot connect to DB | tags=db,sys
